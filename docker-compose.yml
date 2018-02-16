@@ -23,11 +23,23 @@ services:
     volumes_from:
       - code
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: password
+    ports: 
+      - 8888:80
+    volumes:
+      - /sessions
+
+
   mysql:
     image: mysql
-    ports:
-      - "33061:3306"
-      - "33062:3306"
+    # ports:
+    #   - "33061:3306"
+    #   - "33062:3306"
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
